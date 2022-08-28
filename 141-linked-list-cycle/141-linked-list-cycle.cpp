@@ -11,12 +11,10 @@ public:
     bool hasCycle(ListNode *head) {
         map<ListNode*,int> mp;
         while(head!=nullptr){
-            if(!mp[head]){
-                mp[head]++;
-                head=head->next;
-                continue;
-            }
-            else return true;
+            if(mp[head])
+                return true;
+            mp[head]++;
+            head=head->next;
         }
         return false;
     }

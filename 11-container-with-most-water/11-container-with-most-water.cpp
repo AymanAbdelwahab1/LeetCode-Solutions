@@ -4,15 +4,10 @@ public:
         int n=v.size();
         int start=0,end=n-1,ans=0;
         while(end>start){
+            ans = max(ans,(end-start)*min(v[start],v[end]));
             if(v[start]<v[end]){
-                ans = max(ans,(end-start)*v[start]);
                 start++;
-            }else if(v[start]>v[end]){
-                ans = max(ans,(end-start)*v[end]);
-                end--;
             }else{
-                ans = max(ans,(end-start)*v[end]);
-                start++;
                 end--;
             }
         }

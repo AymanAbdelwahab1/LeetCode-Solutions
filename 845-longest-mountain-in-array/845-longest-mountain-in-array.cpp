@@ -1,23 +1,15 @@
 class Solution {
 public:
     int longestMountain(vector<int>& arr) {
-        int n=arr.size(),ans = 0,i=0,peek=0;
-        while(i<n){
-            int start = i;
-            while(i+1 < n && arr[i] < arr[i+1])
-                i++;
-            if(i==start){
-                i++;
-                continue;
-            }
-            peek = i;
-            while(i+1 < n && arr[i] > arr[i+1])
-                i++;
-            if(peek == i){
-                i++;
-                continue;
-            }
-            ans=max(ans,i-start+1);
+        int ups=0,downs=0,ans=0,n=arr.size();
+        for(int i=1;i<arr.size();i++){
+            if(downs && arr[i-1] < arr[i] || arr[i-1] == arr[i])
+                ups=downs=0;
+            ups += arr[i-1] < arr[i];
+            downs += arr[i-1] > arr[i];
+            
+            if(ups&&downs)
+                ans = max(ans, ups+downs+1);
         }
         return ans;
     }
